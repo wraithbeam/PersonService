@@ -7,174 +7,104 @@
 
 
 <div class="page-header">
-
     <h1>Управление персоналом</h1>
-
 </div>
 
 <div class="row">
-
     <div class="col-md-4">
-
         <div class="panel panel-default">
-
             <div class="panel-heading">
-
                 <h2 class="panel-title">Сотрудники</h2>
-
             </div>
-
             <div class="panel-body">
-
                 <ul class="list-unstyled" data-bind="foreach: persons">
-
                     <li>
-
                         <strong><span data-bind="text: LastName"></span></strong>
-
                         <span data-bind="text: FirstName"></span>
-
                         <span data-bind="text: SecondName"></span>:
-
                         <small>
                             <a href="#" data-bind="click: $parent.getPersonDetail">
-
                                 Детальнее . . .
                             </a>
                         </small>
-
                     </li>
-
                 </ul>
-
             </div>
-
         </div>
-
         <div class="alert alert-danger" data-bind="visible: error">
-
             <p data-bind="text: error"></p>
-
         </div>
-
     </div>
 
     <!-- ko if:detail() -->
     <div class="col-md-4">
-
         <div class="panel panel-default">
-
             <div class="panel-heading">
-
                 <h2 class="panel-title">Данные сотрудника</h2>
-
             </div>
 
             <table class="table">
-
                 <tr><td>Фамилия</td><td data-bind="text: detail().LastName"></td></tr>
-
                 <tr><td>Имя</td><td data-bind="text: detail().FirstName"></td></tr>
-
                 <tr><td>Отчество</td><td data-bind="text: detail().SecondName"></td></tr>
-
                 <tr><td>Должность</td><td data-bind="text: detail().Role"></td></tr>
-
                 <tr><td>Дата рождения</td><td data-bind="text: detail().BirstDate"></td></tr>
-
                 <tr><td>Телефон</td><td data-bind="text: detail().Phone"></td></tr>
-
                 <tr><td>Эл.почта</td><td data-bind="text: detail().Email"></td></tr>
-
             </table>
-
         </div>
-
     </div>
-
     <!-- /ko -->
 
     <div class="col-md-4">
-
         <!-- TODO: Add new person -->
-
         <div class="panel panel-default">
-
             <div class="panel-heading">
-
                 <h2 class="panel-title">Добавление нового сотрудника</h2>
-
             </div>
 
-
-
             <div class="panel-body">
-
                 <form class="form-horizontal" data-bind="submit: addPerson">
-
                     <div class="form-group">
-
                         <label for="inputTitle" class="col-sm-6 control-label">
                             Должность
-
                         </label>
-
                         <div class="col-sm-6">
-
                             <select data-bind="options:titles, optionsText: 'Role',
-
                                value: newPerson.Title"></select>
-
                         </div>
-
                     </div>
 
 
-
                     <div class="form-group" data-bind="with: newPerson">
-
                         <label for="inputLastName" class="col-sm-6 control-label">
                             Фамилия
-
                         </label>
-
                         <div class="col-sm-6">
-
                             <input type="text" class="form-control" id="inputLastName"
                                    data-bind="value:LastName" />
-
                         </div>
 
                         <label for="inputFirstName" class="col-sm-6 control-label">Имя</label>
-
                         <div class="col-sm-6">
-
                             <input type="text" class="form-control" id="inputFirstName"
                                    data-bind="value:FirstName" />
-
                         </div>
-
 
 
                         <label for="inputSecondName" class="col-sm-6 control-label">
                             Отчество
-
                         </label>
-
                         <div class="col-sm-6">
-
                             <input type="text" class="form-control" id="inputSecondName"
                                    data-bind="value:SecondName" />
-
                         </div>
-
 
 
                         <label for="inputBirstDate" class="col-sm-6 control-label">
 
                             Дата рождения
                         </label>
-
                         <div class="col-sm-6">
 
                             <input type="datetime" class="form-control" id="inputBirstDate"
@@ -183,42 +113,27 @@
                         </div>
 
 
-
                         <label for="inputPhone" class="col-sm-6 control-label">
                             Телефон
-
                         </label>
-
                         <div class="col-sm-6">
-
                             <input type="tel" step="any" class="form-control"
                                    id="inputPhone" data-bind="value:Phone" />
-
                         </div>
 
 
-
                         <label for="inputEmail" class="col-sm-6 control-label">
-
                             Эл.почта
                         </label>
 
                         <div class="col-sm-6">
-
                             <input type="email" step="any" class="form-control"
                                    id="inputEmail" data-bind="value:Email" />
-
                         </div>
-
                     </div>
-
                     <button type="submit" class="btn btn-default">Сохранить</button>
-
                 </form>
-
             </div>
-
         </div>
-
     </div>
 </div>

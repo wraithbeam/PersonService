@@ -20,27 +20,16 @@ namespace PersonService.Controllers
 
         // GET: api/Person
         public IQueryable<PersonDTO> GetPerson()
-
         {
-
             var persons = from p in db.People
-
                           select new PersonDTO()
-
                           {
-
                               Id = p.Id,
-
                               LastName = p.LastName,
-
                               FirstName = p.FirstName,
-
                               SecondName = p.SecondName,
-
                               Role = p.Title.Role
-
                           };
-
             return persons;
 
         }
@@ -49,43 +38,25 @@ namespace PersonService.Controllers
         [ResponseType(typeof(PersonDetailDTO))]
 
         public async Task<IHttpActionResult> GetPerson(int id)
-
         {
-
             var person = await db.People.Include(t => t.Title).Select(p =>
-
                 new PersonDetailDTO()
-
                 {
-
                     Id = p.Id,
-
                     LastName = p.LastName,
-
                     FirstName = p.FirstName,
-
                     SecondName = p.SecondName,
-
                     Role = p.Title.Role,
-
                     BirstDate = p.BirstDate,
-
                     Phone = p.Phone,
-
                     Email = p.Email
-
                 }).SingleOrDefaultAsync(p => p.Id == id);
 
             if (person == null)
-
             {
-
                 return NotFound();
-
             }
-
             return Ok(person);
-
         }
 
         // PUT: api/Person/5
@@ -127,47 +98,26 @@ namespace PersonService.Controllers
         [ResponseType(typeof(Person))]
 
         public async Task<IHttpActionResult> PostPerson(Person person)
-
         {
-
             if (!ModelState.IsValid)
-
             {
-
                 return BadRequest(ModelState);
-
             }
-
             db.People.Add(person);
-
             await db.SaveChangesAsync();
 
-
-
-            // New code: 
-
+            // New code:
             // Load Title role 
-
             db.Entry(person).Reference(x => x.Title).Load();
-
             var dto = new PersonDTO()
-
             {
-
                 Id = person.Id,
-
                 FirstName = person.FirstName,
-
                 SecondName = person.SecondName,
-
                 LastName = person.LastName,
-
                 Role = person.Title.Role
-
             };
-
             return CreatedAtRoute("DefaultApi", new { id = person.Id }, dto);
-
         }
 
         // DELETE: api/Person/5
